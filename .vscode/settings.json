@@ -1,7 +1,7 @@
 {
     "codeium.enableInComments": false,
     "codeium.useSecretStorage": false,
-    "codeium.enableExplainProblem": true,
+    "codeium.enableExplainProblem": false,
     "codeium.detectProxy": false,
     "codeium.enableCodeLens": false
 }

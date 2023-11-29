@@ -9,6 +9,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.3
+
+  # repository package
+  api_repository:
+    path: ./packages/api_repository
+  client_repository:
+    path: ./packages/client_repository
+  user_repository:
+    path: ./packages/user_repository
+  product_repository:
+    path: ./packages/product_repository
 
 dev_dependencies:
   flutter_test:
