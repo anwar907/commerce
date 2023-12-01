@@ -6,6 +6,7 @@ import 'package:user_repository/user_repository.dart';
 import 'app/app.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   // initilaize Dio configuration
   var option = Configuration.initialize();
 

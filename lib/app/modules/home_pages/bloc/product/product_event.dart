@@ -11,8 +11,7 @@ class SearchQueryEvent extends ProductEvent {
 }
 
 class DetailsProductEvent extends ProductEvent {
-  final String id;
+  final int id;
 
   DetailsProductEvent(this.id);
 }
-

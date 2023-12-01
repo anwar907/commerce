@@ -20,7 +20,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     try {
       emit(state.copyWith(status: StatusState.loading));
 
-      final data = await _userRepository.auth(event.usernaame, event.paassword);
+      final data = await _userRepository.auth(
+          event.username ?? '', event.password ?? '');
 
       emit(state.copyWith(authModels: data, status: StatusState.success));
     } catch (e) {

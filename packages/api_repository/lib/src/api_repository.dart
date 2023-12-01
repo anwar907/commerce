@@ -1,5 +1,6 @@
 import 'package:api_repository/utils/api_method.dart';
 import 'package:client_repository/client_repository.dart';
+import 'package:client_repository/models/cart_models.dart';
 
 class ApiRepository implements ClientRepository {
   ApiClient? apiClient;
@@ -22,7 +23,7 @@ class ApiRepository implements ClientRepository {
   }
 
   @override
-  Future<ProductModels> detailsProduct({String? id}) async {
+  Future<ProductModels> detailsProduct({int? id}) async {
     try {
       final response = await apiClient?.get('products/$id');
 
@@ -33,11 +34,16 @@ class ApiRepository implements ClientRepository {
   }
 
   @override
-  Future<ProductModels> listProduct() async {
+  Future<List<ProductModels>> listProduct() async {
     try {
       final response = await apiClient?.get('products');
 
-      return response?.data.map((e) => listProductModelsFromJson(e));
+      List<dynamic> responseData = response?.data;
+
+      List<ProductModels> listProduct =
+          responseData.map((e) => ProductModels.fromJson(e)).toList();
+
+      return listProduct;
     } catch (e) {
       throw Exception(e);
     }
@@ -48,6 +54,21 @@ class ApiRepository implements ClientRepository {
     try {
       final response = await apiClient?.get('products?sort=$query');
       return ProductModels.fromJson(response?.data);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Future<List<CartModels>> listCart() async {
+    try {
+      final response = await apiClient?.get('carts');
+
+      List<dynamic> listData = response?.data;
+
+      List<CartModels> listCart =
+          listData.map((e) => CartModels.fromJson(e)).toList();
+      return listCart;
     } catch (e) {
       throw Exception(e);
     }

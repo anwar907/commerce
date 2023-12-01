@@ -1,4 +1,5 @@
 import 'package:client_repository/client_repository.dart';
+import 'package:client_repository/models/cart_models.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product_repository/product_repository.dart';
@@ -25,7 +26,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       final listDataProduct = await _productRepository.listProduct();
 
       emit(state.copyWith(
-          product: listDataProduct, status: StatusState.success));
+          listProduct: listDataProduct, status: StatusState.success));
     } catch (e) {
       emit(state.copyWith(status: StatusState.failure, message: e.toString()));
     }
@@ -36,6 +37,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     try {
       emit(state.copyWith(status: StatusState.loading));
       final dataProduct = await _productRepository.detailsProduct(event.id);
+
       emit(state.copyWith(product: dataProduct, status: StatusState.success));
     } catch (e) {
       emit(state.copyWith(status: StatusState.failure, message: e.toString()));
@@ -52,4 +54,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       emit(state.copyWith(status: StatusState.failure, message: e.toString()));
     }
   }
+
+ 
 }

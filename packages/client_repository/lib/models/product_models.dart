@@ -8,9 +8,9 @@ String listProductModelsToJson(List<ProductModels> data) =>
     json.encode((List<dynamic>.from(data.map((e) => e.toJson()))));
 
 class ProductModels {
-  final int? id;
+  final num? id;
   final String? title, description, image, category;
-  final double? price;
+  final num? price;
   final RatingModels? rating;
   ProductModels(
       {this.id,
@@ -28,7 +28,7 @@ class ProductModels {
       description: json['description'],
       image: json['image'],
       category: json['category'],
-      rating: json['rating']);
+      rating: RatingModels.fromJson(json['rating']));
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -41,8 +41,8 @@ class ProductModels {
 }
 
 class RatingModels {
-  final double? rate;
-  final int? cost;
+  final num? rate;
+  final num? cost;
 
   RatingModels({this.rate, this.cost});
 
