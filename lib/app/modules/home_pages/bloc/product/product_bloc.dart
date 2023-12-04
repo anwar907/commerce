@@ -36,7 +36,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       DetailsProductEvent event, Emitter<ProductState> emit) async {
     try {
       emit(state.copyWith(status: StatusState.loading));
-      final dataProduct = await _productRepository.detailsProduct(event.id);
+      final dataProduct = await _productRepository.detailsProduct(id: event.id);
 
       emit(state.copyWith(product: dataProduct, status: StatusState.success));
     } catch (e) {

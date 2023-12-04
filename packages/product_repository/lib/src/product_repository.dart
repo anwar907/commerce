@@ -31,7 +31,7 @@ class ProductRepository {
     }
   }
 
-  Future<ProductModels> detailsProduct(int id) async {
+  Future<ProductModels> detailsProduct({required int id}) async {
     try {
       return await _apiRepository.detailsProduct(id: id);
     } on Exception catch (error, stackTrace) {
